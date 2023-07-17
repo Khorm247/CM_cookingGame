@@ -14,14 +14,10 @@ public class GameInput : MonoBehaviour
     }
     public Vector2 GetMovementVectorNormalized()
     {
-        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-
-        Debug.Log("before" + inputVector);
+        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();       
 
         inputVector = inputVector.normalized;
-        Debug.Log("after" + inputVector);
-
-
+        
         return inputVector;
     }
 }
