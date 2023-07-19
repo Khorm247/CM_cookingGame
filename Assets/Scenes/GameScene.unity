@@ -667,7 +667,7 @@ GameObject:
   - component: {fileID: 1100651833}
   - component: {fileID: 1100651832}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,6 +1169,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5774191074206991379, guid: f872d1144c421ae4d8940f4d5c8d1706,
+        type: 3}
+      propertyPath: kitchenObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 23a2413187643074ea598de7552a2c34,
+        type: 2}
     - target: {fileID: 7171649156080549915, guid: f872d1144c421ae4d8940f4d5c8d1706,
         type: 3}
       propertyPath: m_RootOrder
