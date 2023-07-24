@@ -12,8 +12,6 @@ public class ClearCounter : MonoBehaviour, IKitchenObjectParent
 
     public void Interact(Player player)
     {
-
-
         if (kitchenObject == null)
         {
             // for now we spawn the assigned KitchenObjectSO
