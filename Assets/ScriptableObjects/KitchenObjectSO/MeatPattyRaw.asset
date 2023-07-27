@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d690a2061063c849b58091f1a3ad57f, type: 3}
   m_Name: MeatPattyRaw
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8841641792108874744, guid: 278cd17c62de22a4b8149d7908fe5000, type: 3}
-  sprite: {fileID: 21300000, guid: 77b28124b8bda494381c80bd5aa42c22, type: 3}
-  objectName: Bread
+  prefab: {fileID: 3074900115510450265, guid: d057150496fb1584db42f21f60370dd1, type: 3}
+  sprite: {fileID: 21300000, guid: aa1bacc24dde76e47b2ec0dd4e82385b, type: 3}
+  objectName: MeatPattyRaw
