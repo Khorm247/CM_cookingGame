@@ -52,8 +52,7 @@ public class ContainerCounter : BaseCounter
     private void SpawnKitchenObjectAndGiveItToPlayer(Player player)
     {
         Debug.Log("Spawning object");
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
-        kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(player);
+        KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
         OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);        
     }
 }
