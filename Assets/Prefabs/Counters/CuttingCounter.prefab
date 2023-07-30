@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6581731414430230542, guid: d72bee846803d074784ffb8f64e993ca,
+        type: 3}
+      propertyPath: topCounterPoint
+      value: 
+      objectReference: {fileID: 5449028554312777681}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -189,6 +194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topCounterPoint: {fileID: 5449028554312777681}
+  cuttingRecipeSOArray:
+  - {fileID: 11400000, guid: 41d8dc4f33e0b714fb9ce3af0ecd7813, type: 2}
+  - {fileID: 11400000, guid: cec9fa9c8b047d5418233765e1a408ea, type: 2}
+  - {fileID: 11400000, guid: f091ff6b7753d254db16bfca07b7224b, type: 2}
 --- !u!4 &5449028554312777681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 732766945926669723, guid: 93e6803908c85654ab975d4a1bb634e2,
