@@ -136,9 +136,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         }
         if (canMove)
             transform.position += moveDir * moveDistance;
-        // movement alternatives
-        //transform.eulerAngles = moveDir;
-        //transform.LookAt(transform.position);
 
         // toogle Bool for movement Animator
         isWalking = moveDir != Vector3.zero;
