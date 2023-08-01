@@ -1166,10 +1166,40 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1859824995}
     m_Modifications:
+    - target: {fileID: 585119919789924481, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1079461989376827025, guid: c39d5a9ebd331fb42bb262cf103ce11d,
         type: 3}
       propertyPath: m_Name
       value: StoveCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634686511268214536, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634686511268214542, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634686511268214542, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634686511268214542, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634686511268214542, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7755510340131062483, guid: c39d5a9ebd331fb42bb262cf103ce11d,
         type: 3}
@@ -1225,6 +1255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651746738933934079, guid: c39d5a9ebd331fb42bb262cf103ce11d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

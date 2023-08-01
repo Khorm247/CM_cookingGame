@@ -3,14 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
-{
-    public event EventHandler<OnCuttingProgressChangedEventArgs> OnCuttingProgressChanged;
-    public class OnCuttingProgressChangedEventArgs : EventArgs {
-        public float cuttingProgressNormalized;
-    }
+public class CuttingCounter : BaseCounter, IHasProgress {
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnCut;
-
+    
     [SerializeField] CuttingRecipeSO[] cuttingRecipeSOArray;
 
     private int cuttingProgress;
@@ -28,9 +24,9 @@ public class CuttingCounter : BaseCounter
                 CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
                 // Fire event for progressBar update
-                OnCuttingProgressChanged?.Invoke(this, new OnCuttingProgressChangedEventArgs
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
-                    cuttingProgressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                 });
             }
             else
@@ -68,9 +64,10 @@ public class CuttingCounter : BaseCounter
                 // play cut-animation
                 OnCut?.Invoke(this, EventArgs.Empty);
                 // Fire event for progressBar update
-                OnCuttingProgressChanged?.Invoke(this, new OnCuttingProgressChangedEventArgs
+                Debug.Log("altaction before crash?");
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
-                    cuttingProgressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                 });
                 
                 if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax)
