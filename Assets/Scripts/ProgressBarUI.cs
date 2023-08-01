@@ -12,15 +12,13 @@ public class ProgressBarUI : MonoBehaviour
     private IHasProgress hasProgress;
 
     private void Start()
-    {
-        Debug.Log("Crash inc?");
-        hasProgress = hasProgressGameObject.GetComponent<IHasProgress>();
-        Debug.Log("no?");
-        /*
+    {        
+        hasProgress = hasProgressGameObject.GetComponent<IHasProgress>();        
+        
         if (hasProgress == null ) {
             Debug.LogError("GameObject " + hasProgressGameObject + " does not have a component that implements IHasProgress");
         }
-        */
+        
 
 
         hasProgress.OnProgressChanged += HasProgress_OnProgressChanged;
