@@ -20,14 +20,18 @@ public class CuttingCounter : BaseCounter, IHasProgress {
             {
                 // Player is carrying something
                 player.GetKitchenObject().SetKitchenObjectParent(this);
-                cuttingProgress = 0;
+                
                 CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
-                // Fire event for progressBar update
-                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                if (cuttingRecipeSO != null)
                 {
-                    progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
-                });
+                    cuttingProgress = 0;
+                    // Fire event for progressBar update
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                    {
+                        progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    });
+                }                
             }
             else
             {
@@ -44,8 +48,11 @@ public class CuttingCounter : BaseCounter, IHasProgress {
             else
             {
                 // Player is free to pick up the counter object
-                GetKitchenObject().SetKitchenObjectParent(player);
-                Debug.Log("setting object to player");
+                GetKitchenObject().SetKitchenObjectParent(player);                
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                {
+                    progressNormalized = 0f
+                });
             }
         }
     }
@@ -63,8 +70,7 @@ public class CuttingCounter : BaseCounter, IHasProgress {
                 cuttingProgress++;
                 // play cut-animation
                 OnCut?.Invoke(this, EventArgs.Empty);
-                // Fire event for progressBar update
-                Debug.Log("altaction before crash?");
+                // Fire event for progressBar update                
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
                     progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax

@@ -32,8 +32,7 @@ public class ClearCounter : BaseCounter
             else
             {
                 // Player is free to pick up the counter object
-                GetKitchenObject().SetKitchenObjectParent(player);
-                Debug.Log("setting object to player");
+                GetKitchenObject().SetKitchenObjectParent(player);                
             }
         }
     }
