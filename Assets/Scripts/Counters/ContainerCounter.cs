@@ -37,6 +37,8 @@ public class ContainerCounter : BaseCounter
             else
             {
                 // Player has an object
+
+                // does player have a plate? Try add ingredient on top
                 if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
                 {
                     // player is holding a plate                    
@@ -45,6 +47,21 @@ public class ContainerCounter : BaseCounter
                         GetKitchenObject().DestroySelf();
                     }
                 }
+                else
+                {
+                    // Player is not carrying a plate but something else
+
+                    // is there a plate on top?
+                    if (GetKitchenObject().TryGetPlate(out plateKitchenObject))
+                    {
+                        // Try to add ingredient
+                        if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO()))
+                        {
+                            player.GetKitchenObject().DestroySelf();
+                        }
+                    }
+                }
+                
             }
         }
     }
