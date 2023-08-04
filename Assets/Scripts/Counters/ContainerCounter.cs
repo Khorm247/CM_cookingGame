@@ -17,14 +17,12 @@ public class ContainerCounter : BaseCounter
             if (player.HasKitchenObject())
             {
                 // Player is carrying something
-                // so the player drops it on the container
-                Debug.Log("no object on counter, player drops his object");
+                // so the player drops it on the container                
                 player.GetKitchenObject().SetKitchenObjectParent(this);
             }
             else
             {
-                // Spawn Item for the Player to pickup
-                Debug.Log("no object on counter, player was not holding anything");
+                // Spawn Item for the Player to pickup                
                 SpawnKitchenObjectAndGiveItToPlayer(player);
             }
         }
@@ -32,14 +30,21 @@ public class ContainerCounter : BaseCounter
         {
             // there IS a KitchenObject
             if (!player.HasKitchenObject())
-            {
+            {                
                 // Player is free to pick up the counter object
-                GetKitchenObject().SetKitchenObjectParent(player);
-                Debug.Log("setting object to player");                
+                GetKitchenObject().SetKitchenObjectParent(player);                          
             }
             else
             {
-                // Player has an object but should not be allowed to drop it
+                // Player has an object
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    // player is holding a plate                    
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                    }
+                }
             }
         }
     }

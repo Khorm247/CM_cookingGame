@@ -27,7 +27,15 @@ public class ClearCounter : BaseCounter
             // there IS a KitchenObject
             if (player.HasKitchenObject())
             {
-                // Player has an object but should not be allowed to drop it
+                // Player has an object
+                if(player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    // player is holding a plate                    
+                    if(plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                    }                    
+                }
             }
             else
             {
