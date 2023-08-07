@@ -25,6 +25,7 @@ public class PlateIconsUI : MonoBehaviour
 
     private void UpdateVisual()
     {
+        // clear existing icons
         foreach(Transform child in transform)
         {
             if (child != iconTemplate) 

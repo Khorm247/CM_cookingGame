@@ -16,20 +16,8 @@ public class PlatesCounter : BaseCounter
     private int platesSpawnedAmountMax = 4;
 
     private void Update()
-    {
-        spawnPlateTimer += Time.deltaTime;
-        if (spawnPlateTimer > spawnPlateTimerMax )
-        {            
-            spawnPlateTimer = 0f;
-
-            if (platesSpawnedAmount < platesSpawnedAmountMax)
-            {
-                platesSpawnedAmount++;
-
-                // TODO add another visual to the Counter
-                OnPlateSpawned?.Invoke(this, EventArgs.Empty);
-            }
-        }
+    {        
+        TrySpawnPlate();
     }
 
     public override void Interact(Player player)
@@ -44,6 +32,22 @@ public class PlatesCounter : BaseCounter
 
                 KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
                 OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+            }
+        }
+    }
+
+    private void TrySpawnPlate()
+    {
+        spawnPlateTimer += Time.deltaTime;
+        if (spawnPlateTimer > spawnPlateTimerMax)
+        {
+            spawnPlateTimer = 0f;
+
+            if (platesSpawnedAmount < platesSpawnedAmountMax)
+            {
+                platesSpawnedAmount++;
+
+                OnPlateSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
     }

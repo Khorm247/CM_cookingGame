@@ -18,7 +18,7 @@ public class PlateCompleteVisual : MonoBehaviour
     {
         plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredientAdded;
 
-        // hide all objects on the plate on spawn
+        // spawn clear plate - so all burger-objects need to be hidden
         foreach (KitchenObjectSO_GameObject kitchenObjectSO_GameObject in kitchenObjectSO_GameObjectList)
         {
             kitchenObjectSO_GameObject.gameObject.SetActive(false);
@@ -27,6 +27,7 @@ public class PlateCompleteVisual : MonoBehaviour
 
     private void PlateKitchenObject_OnIngredientAdded(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e)
     {
+        // enable the visual for the added burger-object
         foreach (KitchenObjectSO_GameObject kitchenObjectSO_GameObject in kitchenObjectSO_GameObjectList)
         {
             if (kitchenObjectSO_GameObject.kitchenObjectSO == e.kitchenObjectSO)

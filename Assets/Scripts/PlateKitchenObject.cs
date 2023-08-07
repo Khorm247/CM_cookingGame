@@ -33,6 +33,7 @@ public class PlateKitchenObject : KitchenObject
         }
         else
         {
+            // add ingredient to plate
             kitchenObjectSOList.Add(kitchenObjectSO);
 
             OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs {
