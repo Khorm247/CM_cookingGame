@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -5,13 +6,15 @@ using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
+    public event EventHandler OnRecipeSpawned;
+    public event EventHandler OnRecipeDelivered;
     public static DeliveryManager Instance { get; private set; }
 
     [SerializeField] private RecipeListSO recipeListSO;
 
-    public List<RecipeSO> waitingRecipeSOList;
+    private List<RecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer;
-    private float spawnRecipeTimerMax = 4f;
+    private float spawnRecipeTimerMax = 10f;
     private int waitingRecipesMax = 4;
 
     private void Awake()
@@ -29,9 +32,10 @@ public class DeliveryManager : MonoBehaviour
 
             if(waitingRecipeSOList.Count < waitingRecipesMax ) 
             {
-                RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[Random.Range(0, recipeListSO.recipeSOList.Count)];
-                Debug.Log(waitingRecipeSO.recipeName);
+                RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];                
                 waitingRecipeSOList.Add(waitingRecipeSO);
+
+                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }            
         }
     }
@@ -41,13 +45,6 @@ public class DeliveryManager : MonoBehaviour
         for (int i = 0; i < waitingRecipeSOList.Count; i++) 
         { 
             RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
-            //Debug.Log("waitingRecipeSO.kitchenObjectSOList:");
-            //foreach (KitchenObjectSO koso in waitingRecipeSO.kitchenObjectSOList)
-            //    Debug.Log(koso);
-
-            //Debug.Log("plateKitchenObject.GetKitchenObjectSOList()");
-            //foreach (KitchenObjectSO koso in plateKitchenObject.GetKitchenObjectSOList())
-            //    Debug.Log(koso);
             
             if(waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count)
             {
@@ -82,10 +79,17 @@ public class DeliveryManager : MonoBehaviour
                     // correct Recipe delivered!
                     Debug.Log("Recipe delivered!");
                     waitingRecipeSOList.RemoveAt(i);
+
+                    OnRecipeDelivered?.Invoke(this, EventArgs.Empty);
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    public List<RecipeSO> GetWaitingRecipeSOList()
+    {
+        return waitingRecipeSOList;
     }
 }

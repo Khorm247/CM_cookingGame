@@ -72,8 +72,7 @@ public class ContainerCounter : BaseCounter
     /// <param name="player"></param>
     /// <param name=""></param>
     private void SpawnKitchenObjectAndGiveItToPlayer(Player player)
-    {
-        Debug.Log("Spawning object");
+    {        
         KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
         OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);        
     }

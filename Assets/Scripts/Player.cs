@@ -87,8 +87,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 }                
             }
             else
-            {
-                Debug.Log("first else");
+            {                
                 SetSelectedCounter(null);
             }
         else
