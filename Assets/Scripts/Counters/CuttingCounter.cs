@@ -6,6 +6,7 @@ using UnityEngine;
 public class CuttingCounter : BaseCounter, IHasProgress {
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnCut;
+    public static event EventHandler OnAnyCut;
     
     [SerializeField] CuttingRecipeSO[] cuttingRecipeSOArray;
 
@@ -78,6 +79,7 @@ public class CuttingCounter : BaseCounter, IHasProgress {
                 cuttingProgress++;
                 // play cut-animation
                 OnCut?.Invoke(this, EventArgs.Empty);
+                OnAnyCut?.Invoke(this, EventArgs.Empty);
                 // Fire event for progressBar update                
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {

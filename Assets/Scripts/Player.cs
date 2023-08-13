@@ -7,8 +7,9 @@ using UnityEngine;
 public class Player : MonoBehaviour, IKitchenObjectParent
 {
     // Singleton Pattern with a property
-    public static Player Instance { get; private set; } 
+    public static Player Instance { get; private set; }
 
+    public event EventHandler OnPickedUpAnything;
     // extending the EventHandler Generic to send more information
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
@@ -163,6 +164,12 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+
+        // PlaySound when the Player picked up something
+        if (this.kitchenObject != null)
+        {
+            OnPickedUpAnything?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public KitchenObject GetKitchenObject() { return kitchenObject; }
