@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get; private set; }
     [SerializeField] private AudioClipsRefSO audioClipsRefSO;
 
-    private float lowNoise = 0.2f;
+    private float lowNoiseLevel = 0.2f;
+    private float playerFootstepNoiseLevel = 2f;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -14,6 +21,20 @@ public class SoundManager : MonoBehaviour
         DeliveryManager.Instance.OnRecipeSuccess += DeliveryManager_OnRecipeSuccess;
         CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut;
         Player.Instance.OnPickedUpAnything += Player_OnPickedUpAnything;
+        TrashCounter.OnAnyItemTrashed += TrashCounter_OnAnyItemTrashed;
+        BaseCounter.OnAnyObjectPlacedHere += BaseCounter_OnAnyObjectPlacedHere;
+    }
+
+    private void BaseCounter_OnAnyObjectPlacedHere(object sender, System.EventArgs e)
+    {
+        BaseCounter baseCounter = (BaseCounter)sender;
+        PlaySound(audioClipsRefSO.objectDrop, baseCounter.transform.position);
+    }
+
+    private void TrashCounter_OnAnyItemTrashed(object sender, System.EventArgs e)
+    {
+        TrashCounter trash = (TrashCounter)sender;
+        PlaySound(audioClipsRefSO.trash, trash.transform.position);
     }
 
     private void Player_OnPickedUpAnything(object sender, System.EventArgs e)
@@ -29,12 +50,12 @@ public class SoundManager : MonoBehaviour
 
     private void DeliveryManager_OnRecipeSuccess(object sender, System.EventArgs e)
     {
-        PlaySound(audioClipsRefSO.deliverySuccess, Camera.main.transform.position, lowNoise);
+        PlaySound(audioClipsRefSO.deliverySuccess, Camera.main.transform.position, lowNoiseLevel);
     }
 
     private void DeliveryManager_OnRecipeFailed(object sender, System.EventArgs e)
     {
-        PlaySound(audioClipsRefSO.deliveryFail, Camera.main.transform.position, lowNoise);
+        PlaySound(audioClipsRefSO.deliveryFail, Camera.main.transform.position, lowNoiseLevel);
     }
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
@@ -44,6 +65,11 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
-        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);        
+        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
+    }
+
+    public void PlayFootstepSound(Vector3 position)
+    {
+        PlaySound(audioClipsRefSO.footstep[Random.Range(0, audioClipsRefSO.footstep.Length)], position, playerFootstepNoiseLevel);
     }
 }
