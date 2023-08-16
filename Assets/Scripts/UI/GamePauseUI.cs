@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GamePauseUI : MonoBehaviour
-{
+public class GamePauseUI : MonoBehaviour {
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button mainMenuButton;
 
@@ -17,7 +16,7 @@ public class GamePauseUI : MonoBehaviour
         });
 
         mainMenuButton.onClick.AddListener(() =>
-        {            
+        {
             Loader.Load(Loader.Scene.MainMenuScene);
         });
     }
@@ -27,7 +26,7 @@ public class GamePauseUI : MonoBehaviour
         KitchenGameManager.Instance.OnGamePaused += KitchenGameManager_OnGamePaused;
         KitchenGameManager.Instance.OnGameUnpaused += KitchenGameManager_OnGameUnpaused;
 
-        Hide();        
+        //Hide();    // idk why i have to comment this in order to work normally...
     }
 
     private void KitchenGameManager_OnGameUnpaused(object sender, EventArgs e)
@@ -43,12 +42,10 @@ public class GamePauseUI : MonoBehaviour
     private void Hide()
     {
         gameObject.SetActive(false);
-        Debug.Log("pause hide");
     }
 
     private void Show()
     {
         gameObject.SetActive(true);
-        Debug.Log("pause show");
     }
 }

@@ -26,6 +26,17 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pause.performed += Pause_performed;
     }
 
+    private void OnDestroy()
+    {
+        // cleanup to avoid calling old references
+        playerInputActions.Player.Interact.performed -= Interact_performed;
+        playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
+        playerInputActions.Player.Pause.performed -= Pause_performed;
+
+        // the Input Actions Package seems to store some references, so we dispose it to avoid problems
+        playerInputActions.Dispose();
+    }
+
     private void Pause_performed(InputAction.CallbackContext context)
     {
         OnPauseAction?.Invoke(this, EventArgs.Empty);

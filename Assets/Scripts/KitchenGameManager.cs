@@ -32,6 +32,7 @@ public class KitchenGameManager : MonoBehaviour
     {
         Instance = this;
         state = State.WaitingToStart;
+        isGamePaused = false;
     }
 
     private void Start()
@@ -40,8 +41,8 @@ public class KitchenGameManager : MonoBehaviour
     }
 
     private void GameInput_OnPauseAction(object sender, EventArgs e)
-    {
-        TogglePauseGame();
+    {        
+        TogglePauseGame();        
     }
 
     private void Update()
@@ -107,19 +108,18 @@ public class KitchenGameManager : MonoBehaviour
     }
 
     public void TogglePauseGame()
-    {
+    {        
         isGamePaused = !isGamePaused;
+        
         if (isGamePaused)
         {
             Time.timeScale = 0f;
-            OnGamePaused?.Invoke(this, EventArgs.Empty);
-            Debug.Log(isGamePaused);
+            OnGamePaused?.Invoke(this, EventArgs.Empty);            
         }
         else
         {
             Time.timeScale = 1f;
-            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
-            Debug.Log(isGamePaused);
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);            
         }
     }
 }
