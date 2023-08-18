@@ -122,4 +122,9 @@ public class KitchenGameManager : MonoBehaviour
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);            
         }
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("I got destroyed! " + this.gameObject.name);
+    }
 }

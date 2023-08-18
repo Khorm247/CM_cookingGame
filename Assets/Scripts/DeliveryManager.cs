@@ -104,4 +104,9 @@ public class DeliveryManager : MonoBehaviour
     {
         return successfulRecipesDeliveredAmount;
     }
+
+    private void OnDestroy()
+    {
+        //Debug.Log("I got destroyed! " + this.gameObject.name);
+    }
 }

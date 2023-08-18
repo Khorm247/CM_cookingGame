@@ -33,9 +33,7 @@ public class GamePauseUI : MonoBehaviour {
         KitchenGameManager.Instance.OnGamePaused += KitchenGameManager_OnGamePaused;
         KitchenGameManager.Instance.OnGameUnpaused += KitchenGameManager_OnGameUnpaused;
 
-        //Hide();    // idk why i have to comment this in order to work normally...
-        // the pauseUI is activated in the gamescene hierarchy and should display at the beginning
-        // which is why it normally should be hidden in the Start()
+        Hide();
     }
 
     private void KitchenGameManager_OnGameUnpaused(object sender, EventArgs e)
@@ -45,7 +43,7 @@ public class GamePauseUI : MonoBehaviour {
 
     private void KitchenGameManager_OnGamePaused(object sender, System.EventArgs e)
     {
-        Show();
+        Show();        
     }
 
     private void Hide()
