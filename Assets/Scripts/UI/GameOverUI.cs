@@ -18,7 +18,7 @@ public class GameOverUI : MonoBehaviour
         if (KitchenGameManager.Instance.IsGameOverActive())
         {
             // Game ended!
-            recipesDeliveredAmountText.text = DeliveryManager.Instance.GetSuccessfulRecipesDeliveredAmount().ToString();
+            //recipesDeliveredAmountText.text = DeliveryManager.Instance.GetSuccessfulRecipesDeliveredAmount().ToString();
             Show();
         }
         else
