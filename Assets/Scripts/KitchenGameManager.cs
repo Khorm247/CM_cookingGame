@@ -125,6 +125,6 @@ public class KitchenGameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("I got destroyed! " + this.gameObject.name);
+        //Debug.Log("I got destroyed! " + this.gameObject.name);
     }
 }
